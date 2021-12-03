@@ -63,18 +63,20 @@
           </div>
       </div>
   </section>
+  
   <section class="ftco-section contact-section bg-light">
+    {% if messages %} 
+  {% for msg in messages %}
+      <center><p style="color: red">{{ msg }}</p></center>
+      <br />
+  {% endfor %} 
+  {% endif %}
     <div class="container">
 
       
       {% if user.is_authenticated %}
       <div class="row block-9">
-        {% if messages %} 
-        {% for msg in messages %}
-            <p style="color: red">{{ msg }}</p>
-            <br />
-        {% endfor %} 
-        {% endif %}
+        
         <div class="col-md-6 order-md-last d-flex">
           <form action="{% url 'product_bid' %}" method="POST" class="bg-white p-5 contact-form">
               {% csrf_token %}

@@ -66,14 +66,15 @@ def product_bid(request):
             user = request.user
             
             product_object = Product.objects.get(name=product)
+            
             bid_exist = Bid.objects.filter(product=product_object,user=request.user)
             
-            if not bid_exist:
+            if not bid_exist and product_object.user != request.user:
                 Bid.objects.create(product=product_object,quantity=quantity,user=user,mobile=mobile,bid_price=bid_price,message=message)
                 messages.success(request, 'Bid Sent Sucessfully!')
                 return redirect('/')
             else:
-                messages.success(request, 'Bid Already Done By Your Account')
+                messages.success(request, 'Bid Can not Done By Your Account')
             return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
 
 
