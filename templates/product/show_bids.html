@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/bg_1.jpg' %}');">
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-9 ftco-animate text-center">
+            <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Bids</span></p>
+          <h1 class="mb-0 bread">Blog</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="ftco-section ftco-degree-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 ftco-animate">
+            <div class="row">
+                
+              
+                
+                
+                {% for b in bids %}
+                    
+                
+                    
+               
+                    <div class="col-md-12 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch d-md-flex">
+                        <a href="#" class="block-20" style="background-image: url('{{b.product.imagel}}');">
+                        </a>
+                        <div class="text d-block pl-md-4">
+                            <div class="meta mb-3">
+                            <div><a href="#">{{b.timestamp}}</a></div>
+                            <div><a href="#">Bidder: {{b.user.first_name}}</a></div>
+                            
+                        </div>
+                        
+                        <p>Product: {{b.product.name}}</p>
+                        <p>Product ID: {{b.product.id}}</p>
+                        <p>Bidder Number: {{b.mobile}}</p>
+                        <p>Bid Price: {{b.bid_price}} BDT</p>
+                        <p>Quantity: {{b.quantity}}</p>
+                        <hr>
+                        </div>
+                    </div>
+                    </div>
+                {% endfor %}
+
+
+            </div>
+        </div> <!-- .col-md-8 -->
+        
+
+      </div>
+    </div>
+  </section> <!-- .section -->
+{% endblock content %}
+    
