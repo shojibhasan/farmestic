@@ -54,7 +54,7 @@
                         <td class="image-prod"><div class="img" style="background-image:url({{p.image.url}});"></div></td>
                         
                         <td class="product-name">
-                            <h3>{{p.name}}</h3>
+                          <h3><a href="{% url 'product_details' p.id %}">{{p.name}}</a></h3>
                        
                         </td>
                         
