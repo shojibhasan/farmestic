@@ -33,15 +33,11 @@
                                 <span style="color: rgb(0, 0, 0);">{{product.user.first_name}}</span>
                             </a>
                         </p>
-                        <p class="text-left mr-4">
-                          <a href="{% url 'product_bid_details' %}" class="mr-2" style="color: rgb(0, 0, 0);">See Bids
-                              
-                          </a>
-                      </p>
+                        
                         
                           
                       </div>
-                  <p class="price"><span>৳ {{product.price}}</span></p>
+                  <p class="price">Bid Price:  <span>৳ {{product.price}}</span></p>
                   <p>{{product.description}}
                       </p>
                       <div class="row mt-4">
@@ -58,7 +54,7 @@
                 
                 
             </div>
-            <!-- <p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p> -->
+            <p><a href="{% url 'product_bid_details' %}" class="btn btn-black py-3 px-5">See Bids</a></p> 
               </div>
           </div>
       </div>
@@ -87,7 +83,7 @@
               <input type="text" name="mobile" class="form-control" placeholder="Mobile Number" required>
             </div>
             <div class="form-group">
-              <input type="number" name="bid_price" class="form-control" min="{{product.price}}" placeholder="Bid Price" required>
+              <input type="number" name="bid_price" class="form-control" min="{{product.price}}" placeholder="Bid Price (.min {{product.price}} Tk)" required>
             </div>
             <div class="form-group">
                 <input type="text" name="quantity" class="form-control" placeholder="Quantity" required>

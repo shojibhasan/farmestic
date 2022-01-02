@@ -100,3 +100,25 @@ def contact(request):
         Contact.objects.create(name=name,email=email,subject=subject,messages=contact_messages)
         messages.success(request, 'Your Message Sent Sucessfully!')
     return render(request, 'home/contact.html')
+
+@login_required
+def profile(request):
+    
+    user = request.user
+
+    user_data = User.objects.get(email=user)
+    print(user_data)
+    products_data = Product.objects.filter(user=user)
+
+    
+    context = {
+        'user_data':user_data,
+        'products_data':products_data
+    }
+    return render(request,'accounts/profile.html',context)
+
+def delete(request,product_id):
+    query = Product.objects.get(id=product_id)
+    query.delete()
+    # return HttpResponse("Deleted!")
+    return redirect('profile')
