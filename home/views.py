@@ -79,8 +79,8 @@ def product_bid(request):
 
 
 @login_required   
-def show_bids(request):
-    bids = Bid.objects.all()
+def show_bids(request,id):
+    bids = Bid.objects.filter(product=id)
 
     context={
         'bids':bids,
