@@ -1,5 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from home.models import *
+from .forms import *
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
@@ -123,6 +124,29 @@ def delete(request,product_id):
     # return HttpResponse("Deleted!")
     return redirect('profile')
 
+
+@login_required()
+def edit_product(request,id):
+    obj= get_object_or_404(Product, id=id)
+        
+    form = ProductForm(request.POST or None, instance= obj)
+    context= {'form': form}
+
+    if form.is_valid():
+        obj= form.save(commit= False)
+
+        obj.save()
+
+        messages.success(request, "You successfully updated the post")
+
+        context= {'form': form}
+
+        return render(request, 'product/edit_product.html', context)
+
+    else:
+        context= {'form': form,
+                    'error': 'Modify The data'}
+        return render(request,'product/edit_product.html' , context)
 
 def seller_profile(request,id):
     user_data = User.objects.get(id=id)
