@@ -10,5 +10,6 @@ urlpatterns = [
     path('bids/', views.show_bids, name='product_bid_details'),
     path('contact/', views.contact, name='contact'),
     path('profile/',views.profile,name="profile"),
-    path('delete/<int:product_id>',views.delete,name="delete_product")
+    path('delete/<int:product_id>',views.delete,name="delete_product"),
+    path('seller/<int:id>',views.seller_profile,name="seller_profile"),
 ]

@@ -29,7 +29,7 @@
                             <a href="#" class="mr-2" style="color: rgb(221, 221, 221);">Quantity: <span style="color: rgb(0, 0, 0);">{{product.quantity}}</span></a>
                         </p>
                         <p class="text-left mr-4">
-                            <a href="#" class="mr-2" style="color: rgb(221, 221, 221);">Seller: 
+                            <a href="{% url 'seller_profile' product.user.id %}" class="mr-2" style="color: rgb(221, 221, 221);">Seller: 
                                 <span style="color: rgb(0, 0, 0);">{{product.user.first_name}}</span>
                             </a>
                         </p>

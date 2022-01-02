@@ -122,3 +122,16 @@ def delete(request,product_id):
     query.delete()
     # return HttpResponse("Deleted!")
     return redirect('profile')
+
+
+def seller_profile(request,id):
+    user_data = User.objects.get(id=id)
+    print(user_data)
+    products_data = Product.objects.filter(user=user_data)
+
+    
+    context = {
+        'user_data':user_data,
+        'products_data':products_data
+    }
+    return render(request,'accounts/seller_profile.html',context)
