@@ -159,3 +159,21 @@ def seller_profile(request,id):
         'products_data':products_data
     }
     return render(request,'accounts/seller_profile.html',context)
+
+
+def product_search(request):
+    get_method = request.GET.copy()
+    keywords = get_method.get('keywords') or None
+    product_list = Product.objects.all()
+    if keywords is not None:
+        keyword = get_method['keywords']
+        product_list = product_list.filter(name__icontains = keyword)
+        
+    if keywords is not None:
+        keyword = get_method['keywords']
+        product_list = product_list.filter(description__icontains = keyword)
+        
+    context={
+        'product_list':product_list
+    }
+    return render(request,'home/search_result.html',context)
